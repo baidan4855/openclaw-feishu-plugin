@@ -1,6 +1,6 @@
 # Clawdbot Feishu Plugin
 
-[Clawdbot](https://github.com/anthropics/clawdbot) 的飞书（Feishu/Lark）渠道插件，支持通过飞书与 Clawdbot 进行交互。
+[Clawdbot](https://github.com/moltbot/moltbot) 的飞书（Feishu/Lark）渠道插件，支持通过飞书与 Clawdbot 进行交互。
 
 ## 功能特性
 
@@ -20,10 +20,10 @@
 
 ## 安装
 
-### 方式一：通过 Clawdbot 插件安装
+### 方式一：通过 Clawdbot 命令安装（推荐）
 
 ```bash
-clawdbot plugin install <github-repo-url>
+clawdbot plugin install https://github.com/baidan4855/clawdbot-feishu-plugin
 ```
 
 ### 方式二：手动安装
@@ -31,20 +31,10 @@ clawdbot plugin install <github-repo-url>
 1. 克隆仓库到本地：
 
 ```bash
-git clone <repo-url> ~/.clawdbot/extensions/feishu
+git clone https://github.com/baidan4855/clawdbot-feishu-plugin.git ~/.clawdbot/extensions/feishu
 ```
 
-2. 在 Clawdbot 配置中启用插件：
-
-```yaml
-plugins:
-  load:
-    paths:
-      - ~/.clawdbot/extensions/feishu
-  entries:
-    feishu:
-      enabled: true
-```
+2. 重启 Clawdbot 即可自动加载插件
 
 ## 飞书应用配置
 
@@ -65,13 +55,13 @@ plugins:
 
 在「权限管理」页面添加以下权限：
 
-| 权限名称 | 权限标识 | 用途 |
-|---------|---------|-----|
-| 获取与发送单聊、群组消息 | `im:message` | 收发消息 |
-| 读取用户发给机器人的单聊消息 | `im:message.p2p_msg:readonly` | 接收私聊 |
-| 获取群组中所有消息 | `im:message.group_msg:readonly` | 接收群聊 |
-| 以应用的身份发消息 | `im:message:send_as_bot` | 发送消息 |
-| 获取用户基本信息 | `contact:user.base:readonly` | 获取用户信息 |
+| 权限名称                     | 权限标识                        | 用途         |
+| ---------------------------- | ------------------------------- | ------------ |
+| 获取与发送单聊、群组消息     | `im:message`                    | 收发消息     |
+| 读取用户发给机器人的单聊消息 | `im:message.p2p_msg:readonly`   | 接收私聊     |
+| 获取群组中所有消息           | `im:message.group_msg:readonly` | 接收群聊     |
+| 以应用的身份发消息           | `im:message:send_as_bot`        | 发送消息     |
+| 获取用户基本信息             | `contact:user.base:readonly`    | 获取用户信息 |
 
 ### 4. 配置事件订阅
 
@@ -106,14 +96,14 @@ channels:
 
 ### 配置项说明
 
-| 配置项 | 类型 | 必填 | 说明 |
-|-------|-----|-----|------|
-| `appId` | string | 是 | 飞书应用的 App ID |
-| `appSecret` | string | 是 | 飞书应用的 App Secret |
-| `eventMode` | string | 否 | 事件订阅方式：`ws`（默认）或 `http` |
-| `verificationToken` | string | 否 | HTTP 回调验证 Token |
-| `encryptKey` | string | 否 | HTTP 回调加密密钥 |
-| `baseUrl` | string | 否 | API 地址，默认 `https://open.feishu.cn/open-apis` |
+| 配置项              | 类型   | 必填 | 说明                                              |
+| ------------------- | ------ | ---- | ------------------------------------------------- |
+| `appId`             | string | 是   | 飞书应用的 App ID                                 |
+| `appSecret`         | string | 是   | 飞书应用的 App Secret                             |
+| `eventMode`         | string | 否   | 事件订阅方式：`ws`（默认）或 `http`               |
+| `verificationToken` | string | 否   | HTTP 回调验证 Token                               |
+| `encryptKey`        | string | 否   | HTTP 回调加密密钥                                 |
+| `baseUrl`           | string | 否   | API 地址，默认 `https://open.feishu.cn/open-apis` |
 
 ## 使用方式
 
@@ -138,12 +128,15 @@ npm test
 ├── clawdbot.plugin.json  # 插件清单
 ├── src/
 │   ├── channel.ts        # 渠道核心实现
-│   ├── runtime.ts        # 运行时状态
+│   ├── runtime.ts        # 运行时单例
 │   └── feishu/
+│       ├── schema.ts     # 配置 schema 定义
+│       ├── config.ts     # 配置解析
+│       ├── state.ts      # 运行时状态管理
 │       ├── client.ts     # 飞书 API 客户端
-│       ├── config.ts     # 配置类型定义
-│       ├── events.ts     # 事件解析
+│       ├── inbound.ts    # 入站消息处理
 │       ├── outbound.ts   # 出站消息处理
+│       ├── events.ts     # HTTP 回调解析
 │       ├── ws-client.ts  # WebSocket 客户端
 │       ├── ws-proto.ts   # Protobuf 编解码
 │       └── ws-data-cache.ts  # 分片消息缓存
