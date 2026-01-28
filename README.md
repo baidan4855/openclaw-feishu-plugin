@@ -20,21 +20,11 @@
 
 ## 安装
 
-### 方式一：通过 Clawdbot 命令安装（推荐）
+### 通过 Clawdbot 命令安装
 
 ```bash
 clawdbot plugin install https://github.com/baidan4855/clawdbot-feishu-plugin
 ```
-
-### 方式二：手动安装
-
-1. 克隆仓库到本地：
-
-```bash
-git clone https://github.com/baidan4855/clawdbot-feishu-plugin.git ~/.clawdbot/extensions/feishu
-```
-
-2. 重启 Clawdbot 即可自动加载插件
 
 ## 飞书应用配置
 
