@@ -29,7 +29,7 @@
   "devDependencies": {
     "tsx": "^4.7.0"
   },
-  "moltbot": {
+  "clawdbot": {
     "extensions": [
       "./index.ts"
     ]
