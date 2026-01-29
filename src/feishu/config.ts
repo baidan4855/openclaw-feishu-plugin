@@ -8,6 +8,7 @@ export type FeishuDmConfig = {
 
 export type FeishuGroupConfig = {
   requireMention?: boolean;
+  ignoreOtherMentions?: boolean;
   toolPolicy?: string;
 };
 
@@ -23,6 +24,7 @@ export type FeishuAccountConfig = {
   dm?: FeishuDmConfig;
   groupPolicy?: "open" | "allowlist";
   requireMention?: boolean;
+  ignoreOtherMentions?: boolean;
   replyToMode?: "off" | "first" | "all";
   mediaMaxMb?: number;
   actions?: Record<string, boolean>;
@@ -47,6 +49,7 @@ type FeishuRootConfig = {
   dm?: FeishuDmConfig;
   groupPolicy?: "open" | "allowlist";
   requireMention?: boolean;
+  ignoreOtherMentions?: boolean;
   replyToMode?: "off" | "first" | "all";
   mediaMaxMb?: number;
   actions?: Record<string, boolean>;
@@ -153,9 +156,27 @@ export function resolveFeishuRequireMention(params: {
   return false;
 }
 
+export function resolveFeishuIgnoreOtherMentions(params: {
+  cfg: MoltbotConfig;
+  accountId?: string | null;
+  groupId?: string | null;
+}): boolean {
+  const account = resolveFeishuAccount(params);
+  const groupConfig =
+    (params.groupId && account.channels?.[params.groupId]) || account.channels?.["*"];
+  if (typeof groupConfig?.ignoreOtherMentions === "boolean") {
+    return groupConfig.ignoreOtherMentions;
+  }
+  if (typeof account.ignoreOtherMentions === "boolean") {
+    return account.ignoreOtherMentions;
+  }
+  return true; // Default to true (polite behavior)
+}
+
 export function resolveFeishuReplyToMode(params: {
   cfg: MoltbotConfig;
   accountId?: string | null;
+
 }): "off" | "first" | "all" {
   const account = resolveFeishuAccount(params);
   return account.replyToMode ?? "off";

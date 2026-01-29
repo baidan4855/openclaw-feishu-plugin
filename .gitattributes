@@ -1,0 +1,5 @@
+assets/ export-ignore
+test/ export-ignore
+.gitignore export-ignore
+.github/ export-ignore
+.DS_Store export-ignore

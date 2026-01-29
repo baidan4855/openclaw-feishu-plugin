@@ -1,0 +1,7 @@
+assets/
+test/
+.github/
+.gitignore
+.gitattributes
+.DS_Store
+*.log

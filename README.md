@@ -1,5 +1,12 @@
 # Clawdbot Feishu Plugin
 
+[![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](LICENSE)
+[![Version](https://img.shields.io/badge/Version-0.1.1-brightgreen.svg?style=flat-square)](package.json)
+[![Platform](https://img.shields.io/badge/Platform-Feishu%20%7C%20Lark-orange.svg?style=flat-square)](https://open.feishu.cn/)
+[![Clawdbot](https://img.shields.io/badge/Clawdbot-Plugin-purple.svg?style=flat-square)](https://github.com/moltbot/moltbot)
+
+[English Document](./README_en.md)
+
 [Clawdbot](https://github.com/moltbot/moltbot) 的飞书（Feishu/Lark）渠道插件，支持通过飞书与 Clawdbot 进行交互。
 
 ## 功能特性
@@ -98,6 +105,8 @@ clawdbot plugin install https://github.com/baidan4855/clawdbot-feishu-plugin
 | `eventMode`         | string | 否   | 事件订阅方式：`ws`（默认）或 `http`               |
 | `verificationToken` | string | 否   | HTTP 回调验证 Token                               |
 | `encryptKey`        | string | 否   | HTTP 回调加密密钥                                 |
+| `requireMention`      | boolean| 否   | 是否必须被 @ 才回复（私聊默认 false，群聊默认 true）|
+| `ignoreOtherMentions` | boolean| 否   | 当 requireMention 为 false 时，如果其他人被 @，是否忽略该消息（默认 true）<br/>用于让机器人在不被 @ 时参与聊天，但在别人被 @ 时礼貌闭嘴 |
 | `baseUrl`           | string | 否   | API 地址，默认 `https://open.feishu.cn/open-apis` |
 
 ### 多账户配置

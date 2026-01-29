@@ -11,6 +11,7 @@ import {
   resolveFeishuAllowFrom,
   resolveFeishuGroupPolicy,
   resolveFeishuRequireMention,
+  resolveFeishuIgnoreOtherMentions,
   resolveFeishuReplyToMode,
   resolveFeishuBaseUrl,
   type ResolvedFeishuAccount,
@@ -55,6 +56,7 @@ const shouldHandleGroup = (params: {
   cfg: MoltbotConfig;
   chatId: string;
   wasMentioned: boolean;
+  hasAnyMention: boolean;
 }) => {
   const policy = resolveFeishuGroupPolicy({
     cfg: params.cfg,
@@ -68,9 +70,24 @@ const shouldHandleGroup = (params: {
     accountId: params.account.accountId,
     groupId: params.chatId,
   });
-  if (requireMention && !params.wasMentioned) {
-    return false;
+
+  if (requireMention) {
+    if (!params.wasMentioned) {
+      return false;
+    }
+  } else {
+    // If requireMention is false, we might still want to ignore if someone else is explicitly mentioned
+    // unless ignoreOtherMentions is explicitly set to false.
+    const ignoreOtherMentions = resolveFeishuIgnoreOtherMentions({
+      cfg: params.cfg,
+      accountId: params.account.accountId,
+      groupId: params.chatId,
+    });
+    if (ignoreOtherMentions && params.hasAnyMention && !params.wasMentioned) {
+      return false;
+    }
   }
+
   return true;
 };
 
@@ -168,7 +185,23 @@ export async function handleInboundEvent(params: InboundEventParams) {
   const allowFromStore = await runtime.channel.pairing.readAllowFromStore(FEISHU_CHANNEL_ID);
   const allowFrom = [...allowFromConfig, ...allowFromStore];
 
-  const wasMentioned = Boolean(message.mentions && message.mentions.length > 0);
+  /* Refined mention check */
+  const mentions = message.mentions || [];
+  const accountName = account.name?.trim().toLowerCase();
+
+  const hasAnyMention = mentions.length > 0;
+  let wasMentioned = hasAnyMention;
+
+  if (wasMentioned && accountName) {
+    const isSelfMentioned = mentions.some((m) => m.name && m.name.toLowerCase().includes(accountName));
+    // Check for @all (Feishu key is 'all', or name might be localized)
+    const isAllMentioned = mentions.some(
+      (m: any) => m.key === "all" || m.name === "all" || m.name === "所有人",
+    );
+    wasMentioned = isSelfMentioned || isAllMentioned;
+
+    // We do NOT log "inbound ignored" here yet, because we might process it if requireMention is false.
+  }
 
   if (chatType === "group") {
     const allowed = shouldHandleGroup({
@@ -176,9 +209,19 @@ export async function handleInboundEvent(params: InboundEventParams) {
       cfg: params.cfg,
       chatId: message.chat_id,
       wasMentioned,
+      hasAnyMention,
     });
-    if (!allowed) return;
+    if (!allowed) {
+      if (wasMentioned) {
+        // If wasMentioned is true but allowed is false, that's weird (requireMention=true -> true).
+        // It must be policy=allowlist failure.
+      } else {
+        // Just standard ignore
+      }
+      return;
+    }
   }
+
 
   if (chatType === "direct") {
     const dmPolicy = account.dm?.policy ?? "pairing";

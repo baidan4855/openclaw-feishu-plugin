@@ -36,3 +36,11 @@ coverage/
 # Cache
 .cache/
 .eslintcache
+
+# AI Tools
+.cursor/
+.cursorrules
+.cline/
+.windsurf/
+.aider/
+.anthropic/
