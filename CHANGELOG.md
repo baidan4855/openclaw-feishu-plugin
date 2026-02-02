@@ -7,7 +7,7 @@
 
 ### Added
 - Added `ignoreOtherMentions` configuration option to allow bots to ignore messages where other users are explicitly mentioned, even when `requireMention` is false. This enables bots to participate in general conversations without interrupting when someone else is addressed.
-- Improved mention detection logic to respect the bot's configured `name` in `clawdbot.json`, preventing multiple bots in the same group from responding to mentions not intended for them.
+- Improved mention detection logic to respect the bot's configured `name` in `openclaw.json`, preventing multiple bots in the same group from responding to mentions not intended for them.
 
 ## [0.1.0] - 2024-05-20
 

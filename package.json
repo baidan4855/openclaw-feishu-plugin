@@ -2,19 +2,19 @@
   "name": "feishu",
   "version": "0.1.1",
   "type": "module",
-  "description": "Feishu/Lark channel plugin for Clawdbot",
+  "description": "Feishu/Lark channel plugin for openclaw",
   "license": "MIT",
   "author": "jiangjack",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/baidan4855/clawdbot-feishu-plugin.git"
+    "url": "git+https://github.com/baidan4855/openclaw-feishu-plugin.git"
   },
   "bugs": {
-    "url": "https://github.com/baidan4855/clawdbot-feishu-plugin/issues"
+    "url": "https://github.com/baidan4855/openclaw-feishu-plugin/issues"
   },
-  "homepage": "https://github.com/baidan4855/clawdbot-feishu-plugin#readme",
+  "homepage": "https://github.com/baidan4855/openclaw-feishu-plugin#readme",
   "keywords": [
-    "clawdbot",
+    "openclaw",
     "feishu",
     "lark",
     "chatbot",
@@ -29,7 +29,7 @@
   "devDependencies": {
     "tsx": "^4.7.0"
   },
-  "clawdbot": {
+  "openclaw": {
     "extensions": [
       "./index.ts"
     ]

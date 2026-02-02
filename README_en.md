@@ -1,13 +1,13 @@
-# Clawdbot Feishu Plugin
+# openclaw Feishu Plugin
 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](LICENSE)
 [![Version](https://img.shields.io/badge/Version-0.1.1-brightgreen.svg?style=flat-square)](package.json)
 [![Platform](https://img.shields.io/badge/Platform-Feishu%20%7C%20Lark-orange.svg?style=flat-square)](https://open.feishu.cn/)
-[![Clawdbot](https://img.shields.io/badge/Clawdbot-Plugin-purple.svg?style=flat-square)](https://github.com/moltbot/moltbot)
+[![openclaw](https://img.shields.io/badge/openclaw-Plugin-purple.svg?style=flat-square)](https://github.com/openclaw/openclaw)
 
 [中文文档](./README.md)
 
-Feishu/Lark channel plugin for [Clawdbot](https://github.com/moltbot/moltbot), supporting interaction with Clawdbot via Feishu (Lark).
+Feishu/Lark channel plugin for [openclaw](https://github.com/openclaw/openclaw), supporting interaction with openclaw via Feishu (Lark).
 
 ## Features
 
@@ -24,14 +24,14 @@ Feishu/Lark channel plugin for [Clawdbot](https://github.com/moltbot/moltbot), s
 ## Requirements
 
 - Node.js >= 18.17.0 (Native WebSocket support required)
-- Clawdbot
+- openclaw
 
 ## Installation
 
-### Install via Clawdbot CLI
+### Install via openclaw CLI
 
 ```bash
-clawdbot plugin install https://github.com/baidan4855/clawdbot-feishu-plugin
+openclaw plugin install https://github.com/baidan4855/openclaw-feishu-plugin
 ```
 
 ## Feishu App Configuration
@@ -74,13 +74,13 @@ In the "Events & Callbacks" page:
 
 After configuration, create a version and publish it in the "Version Management & Release" page.
 
-## Clawdbot Configuration
+## openclaw Configuration
 
-After installing the plugin, you will see the Feishu channel in the **Channels** page of the Clawdbot console. Simply fill in the **App ID** and **App Secret** to complete the configuration.
+After installing the plugin, you will see the Feishu channel in the **Channels** page of the openclaw console. Simply fill in the **App ID** and **App Secret** to complete the configuration.
 
 > Other configuration items are optional. WebSocket persistent connection is used by default, requiring no public IP.
 
-You can also manually configure it in Clawdbot's configuration file:
+You can also manually configure it in openclaw's configuration file:
 
 ```json
 {
@@ -195,7 +195,7 @@ With this configuration:
 
 ## Usage
 
-After configuration and restarting Clawdbot:
+After configuration and restarting openclaw:
 
 - **Direct Chat**: Send messages directly to the bot.
 - **Group Chat**: Mention @Bot to send messages.
@@ -205,7 +205,7 @@ After configuration and restarting Clawdbot:
 ### Run Tests
 
 ```bash
-# Must be run within the Clawdbot project environment
+# Must be run within the openclaw project environment
 npm test
 ```
 
@@ -213,7 +213,7 @@ npm test
 
 ```
 ├── index.ts              # Plugin Entry
-├── clawdbot.plugin.json  # Plugin Manifest
+├── openclaw.plugin.json  # Plugin Manifest
 ├── src/
 │   ├── channel.ts        # Channel Core Implementation
 │   ├── runtime.ts        # Runtime Singleton

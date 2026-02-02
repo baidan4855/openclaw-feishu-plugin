@@ -8,12 +8,12 @@ import type {
   ChannelPlugin,
   MoltbotConfig,
   MoltbotPluginApi,
-} from "clawdbot/plugin-sdk";
+} from "openclaw/plugin-sdk";
 import {
   createActionGate,
   formatPairingApproveHint,
   normalizePluginHttpPath,
-} from "clawdbot/plugin-sdk";
+} from "openclaw/plugin-sdk";
 
 import {
   listFeishuAccountIds,

@@ -3,7 +3,7 @@
  * desc: 飞书渠道的运行时状态管理
  */
 
-import type { MoltbotConfig } from "clawdbot/plugin-sdk";
+import type { MoltbotConfig } from "openclaw/plugin-sdk";
 import { resolveFeishuAccount, resolveFeishuEventMode, resolveFeishuBaseUrl } from "./config.js";
 import { FeishuWsClient } from "./ws-client.js";
 

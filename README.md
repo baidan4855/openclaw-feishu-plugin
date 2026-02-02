@@ -1,13 +1,13 @@
-# Clawdbot Feishu Plugin
+# openclaw Feishu Plugin
 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](LICENSE)
 [![Version](https://img.shields.io/badge/Version-0.1.1-brightgreen.svg?style=flat-square)](package.json)
 [![Platform](https://img.shields.io/badge/Platform-Feishu%20%7C%20Lark-orange.svg?style=flat-square)](https://open.feishu.cn/)
-[![Clawdbot](https://img.shields.io/badge/Clawdbot-Plugin-purple.svg?style=flat-square)](https://github.com/moltbot/moltbot)
+[![openclaw](https://img.shields.io/badge/openclaw-Plugin-purple.svg?style=flat-square)](https://github.com/openclaw/openclaw)
 
 [English Document](./README_en.md)
 
-[Clawdbot](https://github.com/moltbot/moltbot) 的飞书（Feishu/Lark）渠道插件，支持通过飞书与 Clawdbot 进行交互。
+[openclaw](https://github.com/openclaw/openclaw) 的飞书（Feishu/Lark）渠道插件，支持通过飞书与 openclaw 进行交互。
 
 ## 功能特性
 
@@ -24,14 +24,14 @@
 ## 系统要求
 
 - Node.js >= 18.17.0（需要原生 WebSocket 支持）
-- Clawdbot
+- openclaw
 
 ## 安装
 
-### 通过 Clawdbot 命令安装
+### 通过 openclaw 命令安装
 
 ```bash
-clawdbot plugin install https://github.com/baidan4855/clawdbot-feishu-plugin
+openclaw plugin install https://github.com/baidan4855/openclaw-feishu-plugin
 ```
 
 ## 飞书应用配置
@@ -74,15 +74,15 @@ clawdbot plugin install https://github.com/baidan4855/clawdbot-feishu-plugin
 
 配置完成后，在「版本管理与发布」页面创建版本并发布。
 
-## Clawdbot 配置
+## openclaw 配置
 
-安装插件后，在 Clawdbot 控制台的 **Channels** 页面即可看到 Feishu 渠道。只需填写 **App ID** 和 **App Secret** 两个必填项即可完成配置：
+安装插件后，在 openclaw 控制台的 **Channels** 页面即可看到 Feishu 渠道。只需填写 **App ID** 和 **App Secret** 两个必填项即可完成配置：
 
 ![配置界面](assets/config-screenshot.png)
 
 > 其他配置项均为可选，默认使用 WebSocket 长连接方式接收消息，无需公网 IP。
 
-也可以在 Clawdbot 的配置文件中手动配置：
+也可以在 openclaw 的配置文件中手动配置：
 
 ```json
 {
@@ -197,7 +197,7 @@ clawdbot plugin install https://github.com/baidan4855/clawdbot-feishu-plugin
 
 ## 使用方式
 
-配置完成并重启 Clawdbot 后：
+配置完成并重启 openclaw 后：
 
 - **私聊**：直接给机器人发消息
 - **群聊**：@机器人 发送消息
@@ -207,7 +207,7 @@ clawdbot plugin install https://github.com/baidan4855/clawdbot-feishu-plugin
 ### 运行测试
 
 ```bash
-# 需要在 Clawdbot 项目环境中运行
+# 需要在 openclaw 项目环境中运行
 npm test
 ```
 
@@ -215,7 +215,7 @@ npm test
 
 ```
 ├── index.ts              # 插件入口
-├── clawdbot.plugin.json  # 插件清单
+├── openclaw.plugin.json  # 插件清单
 ├── src/
 │   ├── channel.ts        # 渠道核心实现
 │   ├── runtime.ts        # 运行时单例

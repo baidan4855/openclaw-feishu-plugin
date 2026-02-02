@@ -3,7 +3,7 @@
  * desc: 飞书入站消息处理
  */
 
-import type { MoltbotConfig, ReplyPayload } from "clawdbot/plugin-sdk";
+import type { MoltbotConfig, ReplyPayload } from "openclaw/plugin-sdk";
 import { getFeishuRuntime } from "../runtime.js";
 import {
   normalizeFeishuAllowFrom,
