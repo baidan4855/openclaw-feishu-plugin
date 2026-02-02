@@ -7,7 +7,7 @@
 
 [English Document](./README_en.md)
 
-[openclaw](https://github.com/openclaw/openclaw) 的飞书（Feishu/Lark）渠道插件，支持通过飞书与 Openclaw 进行交互。
+[openclaw](https://github.com/openclaw/openclaw) Openclaw 的飞书（Feishu/Lark）渠道插件，可同时配置多个飞书机器人，无需公网IP。当前版本不再支持clawdbot，请升级到openclaw后，更新插件。
 
 ## 功能特性
 
