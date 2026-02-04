@@ -31,7 +31,7 @@
 ### 通过 openclaw 命令安装
 
 ```bash
-openclaw plugin install https://github.com/baidan4855/openclaw-feishu-plugin
+openclaw plugins install https://github.com/baidan4855/openclaw-feishu-plugin
 ```
 
 ## 飞书应用配置
